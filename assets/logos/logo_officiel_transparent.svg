@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="35%" r="45%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#05070a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="emblemGold" x1="150" y1="80" x2="450" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fae8b6"/>
+      <stop offset="30%" stop-color="#d8b247"/>
+      <stop offset="70%" stop-color="#c49c3e"/>
+      <stop offset="100%" stop-color="#9e792a"/>
+    </linearGradient>
+  </defs>
+
+  
+
+  <!-- Authentic PW House Roof Emblem -->
+  <g transform="translate(188, 100)" stroke="url(#emblemGold)" fill="none">
+    <!-- Chimney -->
+    <path d="M 65 35 L 65 21 L 73 21 L 73 31" stroke-width="3.4" stroke-linecap="butt"/>
+    <!-- Roof Gable -->
+    <polyline points="54,39 110,11 166,39" stroke-width="4.6" stroke-linecap="square" stroke-linejoin="miter"/>
+    <!-- P Stem (distinct clear vertical column) -->
+    <path d="M 26 39 L 26 165" stroke-width="4.6" stroke-linecap="square"/>
+    <!-- P Bowl (high round curve, clearly closing at midline) -->
+    <path d="M 26 39 L 58 39 C 90 39 90 101 58 101 L 26 101" stroke-width="4.6" stroke-linejoin="miter"/>
+    <!-- W Left V -->
+    <polyline points="58,39 112,165 166,39" stroke-width="4.6" stroke-linecap="square" stroke-linejoin="miter"/>
+    <!-- W Right V -->
+    <polyline points="102,39 156,165 210,39" stroke-width="4.6" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="300" y="370" text-anchor="middle" fill="#FFFFFF" font-family="'Montserrat', 'Inter', -apple-system, sans-serif" font-size="27" font-weight="300" letter-spacing="9">PLUG AND WORK</text>
+  <text x="300" y="412" text-anchor="middle" fill="url(#emblemGold)" font-family="'Montserrat', 'Inter', -apple-system, sans-serif" font-size="16" font-weight="500" letter-spacing="14">AGENCY</text>
+</svg>
