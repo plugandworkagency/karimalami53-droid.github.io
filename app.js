@@ -349,6 +349,49 @@ const DEFAULT_PROPERTIES = [
         ]
     },
     {
+        id: "oumel",
+        category: "appartement",
+        isProgramme: true,
+        title: "Résidence Oumel — Standing & Attiques",
+        subtitle: "Casablanca • Ferme Bretonne (Proche Ghandi & Tramway)",
+        location: "Ferme Bretonne",
+        badge: "✨ NOUVEAU LANCEMENT EXCLUSIF",
+        price: 1496000,
+        priceDisplay: "Dès 1 496 000 DH TTC",
+        surfaceHabitable: "49 à 115 m²",
+        surfaceTerrain: "Terrasses jusqu'à 43 m²",
+        chambres: "1 à 2 (F2 & F3)",
+        sdb: "1 ou 2",
+        garage: "Sous-sol titré inclus",
+        description: "Programme neuf de prestige commercialisé en exclusivité par PLUG AND WORK à Casablanca — Ferme Bretonne (à deux pas du Boulevard Ghandi, CIL et CFC). Résidence intime contemporaine de 20 appartements de haut standing (F2 & F3) avec terrasses panoramiques jusqu'à 43 m², marbre au sol, climatisation réversible gainée, cuisines équipées et parking titré en sous-sol inclus.",
+        features: [
+            "Commercialisation exclusive PLUG AND WORK",
+            "Localisation privilégiée : Ferme Bretonne, proche Tramway & Ghandi",
+            "Typologies F2 & F3 de standing (49 m² à 115 m²)",
+            "Grandes terrasses privatives & balcons jusqu'à 43 m²",
+            "Marbre au sol & menuiserie aluminium haut de gamme",
+            "Climatisation réversible gainée & faux-plafonds staff LED",
+            "Place de parking titrée au sous-sol incluse",
+            "15 lots encore disponibles sur 20 (5 déjà réservés)"
+        ],
+        images: [
+            "assets/properties/oumel/01_reveal_hero.jpg",
+            "assets/properties/oumel/02_facade.jpg",
+            "assets/properties/oumel/03_salon.jpg",
+            "assets/properties/oumel/04_balcons.jpg",
+            "assets/properties/oumel/05_sejour.jpg",
+            "assets/properties/oumel/06_suite_parentale.jpg"
+        ],
+        imageCaptions: [
+            "Perspective Hero & Architecture Moderne de la Résidence Oumel",
+            "Façade Contemporaine & Signature Architecturale ABDEN IMMO",
+            "Grand Salon de Réception Baigné de Lumière avec Sol en Marbre",
+            "Vastes Balcons & Terrasses Ensoleillées Sans Vis-à-Vis",
+            "Séjour Convivial & Finitions Haut Standing",
+            "Suite Parentale d'Exception avec Parquet et Salle de Bain Dédiée"
+        ]
+    },
+    {
         id: "terrain_sina",
         category: "terrain",
         title: "Terrains Stratégiques & Promotion",
@@ -514,13 +557,16 @@ function renderProperties(filterCategory = 'all', filterLocation = 'all', filter
                 const isProg = prop.category === 'programme' || 
                                prop.id === 'gloria' || 
                                prop.id === 'victoria' || 
+                               prop.id === 'oumel' || 
+                               prop.isProgramme ||
                                (prop.badge && prop.badge.toLowerCase().includes('programme')) ||
                                (prop.badge && prop.badge.toLowerCase().includes('aide'));
                 if (!isProg) return false;
             } else if (filterCategory === 'appartement') {
                 const isAppart = prop.category === 'appartement' || 
                                  prop.id === 'gloria' || 
-                                 prop.id === 'victoria';
+                                 prop.id === 'victoria' ||
+                                 prop.id === 'oumel';
                 if (!isAppart) return false;
             } else if (prop.category !== filterCategory) {
                 return false;
@@ -678,6 +724,34 @@ function updateProgramsShowcase() {
             waEl.href = `https://wa.me/212661060796?text=${encodeURIComponent('Bonjour, je souhaite des informations sur ' + victoria.title)}`;
         }
     }
+
+    // 3. Sync Oumel project (Ferme Bretonne)
+    const oumel = PROPERTIES.find(p => p.id === 'oumel') || 
+                  PROPERTIES.find(p => p.title && p.title.toLowerCase().includes('oumel')) ||
+                  PROPERTIES.find(p => p.id && p.id.toLowerCase().includes('oumel'));
+    if (oumel) {
+        const imgEl = document.getElementById('oumelShowcaseImg');
+        const tagEl = document.getElementById('oumelShowcaseTag');
+        const locEl = document.getElementById('oumelShowcaseLoc');
+        const titleEl = document.getElementById('oumelShowcaseTitle');
+        const descEl = document.getElementById('oumelShowcaseDesc');
+        const priceEl = document.getElementById('oumelShowcasePrice');
+        const waEl = document.getElementById('oumelShowcaseWa');
+
+        if (imgEl && Array.isArray(oumel.images) && oumel.images.length > 0) {
+            imgEl.src = resolveAsset(oumel.images[0]);
+        }
+        if (tagEl && oumel.badge) tagEl.innerText = oumel.badge;
+        if (locEl && (oumel.subtitle || oumel.location)) {
+            locEl.innerText = '📍 ' + (oumel.subtitle || oumel.location);
+        }
+        if (titleEl && oumel.title) titleEl.innerText = oumel.title;
+        if (descEl && oumel.description) descEl.innerText = oumel.description;
+        if (priceEl && oumel.priceDisplay) priceEl.innerText = oumel.priceDisplay;
+        if (waEl && oumel.title) {
+            waEl.href = `https://wa.me/212661060796?text=${encodeURIComponent('Bonjour, je souhaite la documentation et les disponibilités de la ' + oumel.title)}`;
+        }
+    }
 }
 
 // Helper HTML Escape
@@ -706,6 +780,8 @@ function openModal(projectIdOrPropId) {
     let features = [];
     let specsHtml = "";
     let hasCadastreLink = false;
+    let cadastreLinkUrl = "";
+    let cadastreLinkText = "";
     let waText = "";
 
     const idStr = String(projectIdOrPropId || '').toLowerCase();
@@ -727,6 +803,8 @@ function openModal(projectIdOrPropId) {
             "Titres fonciers individuels livrables"
         ];
         hasCadastreLink = true;
+        cadastreLinkUrl = "projet-gloria.html#lotsSection";
+        cadastreLinkText = "🏢 Voir directement les 12 lots &amp; annonces de Gloria 2 &rarr;";
         images = (gloriaDef && gloriaDef.images) ? gloriaDef.images : [
             "assets/properties/gloria_residence.jpg",
             "assets/properties/gloria/gloria_real_salon_1.jpg",
@@ -866,6 +944,62 @@ function openModal(projectIdOrPropId) {
             </div>
         `;
         waText = "Bonjour plugandworkagency, je souhaite la plaquette officielle de Victoria Square.";
+    } else if (idStr.includes('oumel')) {
+        const oumelDef = (typeof PROPERTIES !== 'undefined' && PROPERTIES.find(p => p.id === 'oumel')) || 
+                         DEFAULT_PROPERTIES.find(p => p.id === 'oumel');
+        title = "Résidence Oumel — Standing & Attiques";
+        subtitle = "📍 Casablanca • Ferme Bretonne (Proche Ghandi & Tramway)";
+        badge = "✨ NOUVEAU LANCEMENT EXCLUSIF";
+        priceTag = "Dès 1 496 000 DH TTC";
+        description = (oumelDef && oumelDef.description) || "Programme neuf d'exception commercialisé en exclusivité par PLUG AND WORK à Casablanca — Ferme Bretonne (à deux pas du Boulevard Ghandi, CIL et CFC). Résidence intime contemporaine de 20 appartements de standing (F2 & F3) avec terrasses privatives jusqu'à 43 m², marbre au sol, climatisation réversible gainée et parking titré en sous-sol inclus.";
+        features = (oumelDef && oumelDef.features) || [
+            "Commercialisation exclusive PLUG AND WORK",
+            "Localisation recherchée : Ferme Bretonne / Ghandi",
+            "20 Appartements F2 & F3 de standing (15 disponibles)",
+            "Grandes terrasses privatives jusqu'à 43 m²",
+            "Place de parking titrée en sous-sol incluse",
+            "Marbre, climatisation gainée & cuisine équipée",
+            "F2 dès 1 496 000 DH • F3 dès 1 581 000 DH",
+            "Rendement locatif brut estimé : 7,0% à 8,7%"
+        ];
+        hasCadastreLink = true;
+        cadastreLinkUrl = "projet-oumel.html#lotsSection";
+        cadastreLinkText = "🏢 Découvrir la grille des 20 lots &amp; disponibilités d'Oumel Résidence &rarr;";
+        images = (oumelDef && oumelDef.images) ? oumelDef.images : [
+            "assets/properties/oumel/01_reveal_hero.jpg",
+            "assets/properties/oumel/02_facade.jpg",
+            "assets/properties/oumel/03_salon.jpg",
+            "assets/properties/oumel/04_balcons.jpg",
+            "assets/properties/oumel/05_sejour.jpg",
+            "assets/properties/oumel/06_suite_parentale.jpg"
+        ];
+        captions = (oumelDef && oumelDef.imageCaptions) ? oumelDef.imageCaptions : [
+            "Perspective Hero & Architecture Moderne de la Résidence Oumel",
+            "Façade Contemporaine & Signature Architecturale ABDEN IMMO",
+            "Grand Salon de Réception Baigné de Lumière avec Sol en Marbre",
+            "Vastes Balcons & Terrasses Ensoleillées Sans Vis-à-Vis",
+            "Séjour Convivial & Finitions Haut Standing",
+            "Suite Parentale d'Exception avec Parquet et Salle de Bain Dédiée"
+        ];
+        specsHtml = `
+            <div class="bg-white/[0.04] border border-white/10 rounded-xl p-2.5">
+                <span class="text-slate-400 block text-[11px] uppercase tracking-wider">Prix de départ</span>
+                <span class="font-bold text-[#FF8A5B] text-xs">1 496 000 DH</span>
+            </div>
+            <div class="bg-white/[0.04] border border-white/10 rounded-xl p-2.5">
+                <span class="text-slate-400 block text-[11px] uppercase tracking-wider">Disponibilités</span>
+                <span class="font-bold text-white text-xs">15 Lots / 20</span>
+            </div>
+            <div class="bg-white/[0.04] border border-white/10 rounded-xl p-2.5">
+                <span class="text-slate-400 block text-[11px] uppercase tracking-wider">Terrasses</span>
+                <span class="font-bold text-white text-xs">Jusqu'à 43 m²</span>
+            </div>
+            <div class="bg-white/[0.04] border border-white/10 rounded-xl p-2.5">
+                <span class="text-slate-400 block text-[11px] uppercase tracking-wider">Parking</span>
+                <span class="font-bold text-emerald-400 text-xs">Titré Sous-sol</span>
+            </div>
+        `;
+        waText = "Bonjour plugandworkagency, je souhaite la documentation complète et les disponibilités d'Oumel Résidence (Ferme Bretonne).";
     } else {
         const prop = (typeof PROPERTIES !== 'undefined' && (
                          PROPERTIES.find(p => p.id === projectIdOrPropId) ||
@@ -952,8 +1086,16 @@ function openModal(projectIdOrPropId) {
     }
 
     if (cadastreEl) {
-        if (hasCadastreLink) cadastreEl.classList.remove('hidden');
-        else cadastreEl.classList.add('hidden');
+        if (hasCadastreLink) {
+            cadastreEl.classList.remove('hidden');
+            const link = cadastreEl.querySelector('a');
+            if (link) {
+                if (cadastreLinkUrl) link.href = cadastreLinkUrl;
+                if (cadastreLinkText) link.innerHTML = cadastreLinkText;
+            }
+        } else {
+            cadastreEl.classList.add('hidden');
+        }
     }
 
     if (waBtn) {

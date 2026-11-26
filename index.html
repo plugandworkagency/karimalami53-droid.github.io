@@ -90,7 +90,8 @@
             <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
                 <a href="#biens" class="hover:text-[#0066FF] transition">Nos Biens</a>
                 <a href="#programmes" class="hover:text-[#0066FF] transition">Programmes Neufs</a>
-                <a href="projet-gloria.html#lotsSection" class="hover:text-[#FF8A5B] transition text-[#FF8A5B] font-semibold">🏢 Annonces Gloria 2 (12 Lots)</a>
+                <a href="projet-oumel.html#lotsSection" class="hover:text-[#FF8A5B] transition text-[#FF8A5B] font-semibold">✨ Oumel Résidence (Ferme Bretonne)</a>
+                <a href="projet-gloria.html#lotsSection" class="hover:text-[#0066FF] transition text-slate-300">🏢 Gloria 2 (12 Lots)</a>
                 <a href="#services" class="hover:text-[#0066FF] transition">Services Promoteurs</a>
                 <a href="#simulateur" class="hover:text-[#0066FF] transition">Simulateur Crédit</a>
                 <a href="#contact" class="hover:text-[#0066FF] transition">Contact</a>
@@ -120,7 +121,8 @@
             <nav class="drawer-nav">
                 <a href="#biens" class="drawer-link active">💎 Catalogue Biens de Prestige</a>
                 <a href="#programmes" class="drawer-link">🏗️ Programmes Neufs &amp; Résidences</a>
-                <a href="projet-gloria.html#lotsSection" class="drawer-link" style="color: #FF8A5B; font-weight: 700;">🏢 Annonces Gloria 2 (12 Lots)</a>
+                <a href="projet-oumel.html#lotsSection" class="drawer-link" style="color: #FF8A5B; font-weight: 700;">✨ Oumel Résidence (Ferme Bretonne)</a>
+                <a href="projet-gloria.html#lotsSection" class="drawer-link">🏢 Annonces Gloria 2 (12 Lots)</a>
                 <a href="#services" class="drawer-link">🤝 Services Promoteurs</a>
                 <a href="#simulateur" class="drawer-link">📊 Simulateur Crédit</a>
                 <a href="#estimation" class="drawer-link highlight-gold">✨ Faire Estimer Mon Bien</a>
@@ -164,6 +166,7 @@
                         <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Zone / Localisation</label>
                         <select id="searchLoc" class="w-full bg-[#0B0F17] text-white px-3.5 py-2.5 rounded-xl border border-white/15 text-sm focus:outline-none focus:border-[#0066FF] focus:ring-1 focus:ring-[#0066FF]">
                             <option value="all">Toutes les zones</option>
+                            <option value="Ferme Bretonne">Ferme Bretonne (Oumel Résidence)</option>
                             <option value="Racine">Racine / Triangle d'Or (Ben Kaddour)</option>
                             <option value="Dar Bouazza">Dar Bouazza / Oulad Azzouz</option>
                             <option value="Aïn Diab">Aïn Diab / Anfa</option>
@@ -222,7 +225,48 @@
                 <p class="text-slate-400 mt-3 text-sm sm:text-base">Du logement moyen standing éligible à l'Aide Directe de l'État aux résidences contemporaines de standing.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projet Oumel Résidence (Ferme Bretonne) - NOUVEAU LANCEMENT EXCLUSIF -->
+                <div class="bg-white/[0.03] backdrop-blur-xl rounded-3xl overflow-hidden border border-[#0066FF]/40 flex flex-col justify-between hover:border-[#0066FF] hover:shadow-[0_0_35px_rgba(0,102,255,0.3)] transition duration-500 relative">
+                    <span class="absolute top-0 right-0 bg-gradient-to-l from-[#FF8A5B] to-[#FF6B4A] text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-bl-xl shadow-lg z-20">
+                        ⭐ EXCLUSIVITÉ
+                    </span>
+                    <div>
+                        <!-- Couverture avec ouverture instantanée de la modale lightbox au clic -->
+                        <div class="relative h-64 overflow-hidden bg-black/60 cursor-pointer group" onclick="openPropertyModal('oumel')" title="Cliquez pour ouvrir la galerie 3D complète">
+                            <img id="oumelShowcaseImg" src="assets/properties/oumel/02_facade.jpg" alt="Résidence Oumel" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='assets/properties/oumel/01_reveal_hero.jpg'">
+                            <span id="oumelShowcaseTag" class="absolute top-4 left-4 bg-[#FF8A5B] text-slate-950 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg">
+                                ✨ NOUVEAU LANCEMENT EXCLUSIF
+                            </span>
+                            <span class="absolute bottom-4 right-4 bg-black/75 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/10 shadow transition group-hover:bg-[#0066FF]">
+                                🏢 15 Lots Dispo &amp; 6 Renders
+                            </span>
+                        </div>
+                        <div class="p-8">
+                            <div id="oumelShowcaseLoc" class="text-xs text-[#FF8A5B] font-semibold mb-1 uppercase tracking-wider">📍 Casablanca • Ferme Bretonne (Ghandi / Tramway)</div>
+                            <h3 id="oumelShowcaseTitle" class="font-serif text-2xl sm:text-3xl font-normal text-white mb-3 hover:text-[#FF8A5B] cursor-pointer transition" onclick="openPropertyModal('oumel')">Résidence Oumel</h3>
+                            <p id="oumelShowcaseDesc" class="text-slate-300 text-sm mb-6 leading-relaxed">
+                                Résidence contemporaine intime de standing (20 appartements F2 &amp; F3). Terrasses privatives jusqu'à 43 m², marbre au sol, climatisation réversible gainée et parking titré en sous-sol inclus.
+                            </p>
+                            <div class="bg-white/[0.04] rounded-2xl p-4 space-y-2 text-sm text-slate-300 mb-6 border border-white/10">
+                                <div>💰 Prix indicatif : Dès <strong id="oumelShowcasePrice" class="text-[#FF8A5B] font-bold">1 496 000 DH</strong> (F2 Attique)</div>
+                                <div>🔑 15 Lots encore disponibles • F3 dès 1 581 000 DH</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-0 flex flex-wrap gap-3">
+                        <a href="projet-oumel.html#lotsSection" class="flex-1 px-4 py-3.5 bg-[#0066FF] hover:bg-[#0052cc] text-white rounded-xl text-sm font-bold text-center transition shadow-md flex items-center justify-center gap-1.5">
+                            🏢 Voir les 20 Lots
+                        </a>
+                        <button type="button" onclick="openPropertyModal('oumel')" class="px-4 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/15 rounded-xl text-sm font-semibold transition shadow-sm flex items-center justify-center gap-1.5 cursor-pointer">
+                            📸 Renders 3D
+                        </button>
+                        <a id="oumelShowcaseWa" href="https://wa.me/212661060796?text=Bonjour,%20je%20souhaite%20la%20documentation%20et%20la%20grille%20des%20lots%20sur%20Oumel%20Résidence" target="_blank" class="px-4 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-center rounded-xl font-semibold text-sm transition shadow-sm flex items-center justify-center gap-1">
+                            💬 WhatsApp
+                        </a>
+                    </div>
+                </div>
+
                 <!-- Projet Gloria 2 (Aide de l'État) -->
                 <div class="bg-white/[0.03] backdrop-blur-xl rounded-3xl overflow-hidden border border-white/10 flex flex-col justify-between hover:border-[#0066FF]/50 hover:shadow-[0_0_35px_rgba(0,102,255,0.2)] transition duration-500">
                     <div>
@@ -478,6 +522,8 @@
             <div class="flex items-center gap-6 text-xs font-medium">
                 <a href="#biens" class="hover:text-white transition">Biens</a>
                 <a href="#programmes" class="hover:text-white transition">Programmes Neufs</a>
+                <a href="projet-oumel.html#lotsSection" class="hover:text-[#FF8A5B] transition text-[#FF8A5B]">Oumel Résidence</a>
+                <a href="projet-gloria.html#lotsSection" class="hover:text-white transition">Gloria 2</a>
                 <a href="#services" class="hover:text-white transition">Promoteurs</a>
                 <a href="#simulateur" class="hover:text-white transition">Simulateur</a>
                 <a href="https://wa.me/212661060796" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition">WhatsApp 7j/7</a>
